@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=1024, user-scalable=no">
+
+	<title>Statistical Tools for Performance Monitoring</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="imakewebthings-deck.js-1.0.0/core/deck.core.css">
+	
+	<!-- Extension CSS files go here. Remove or add as needed. -->
+	<link rel="stylesheet" media="screen" href="imakewebthings-deck.js-1.0.0/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" media="screen" href="imakewebthings-deck.js-1.0.0/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" media="screen" href="imakewebthings-deck.js-1.0.0/extensions/status/deck.status.css">
+	<link rel="stylesheet" media="screen" href="imakewebthings-deck.js-1.0.0/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" media="screen" href="imakewebthings-deck.js-1.0.0/extensions/scale/deck.scale.css">
+
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" media="screen" href="imakewebthings-deck.js-1.0.0/themes/style/swiss.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<link rel="stylesheet" media="screen" href="imakewebthings-deck.js-1.0.0/themes/transition/fade.css">
+
+	<!-- Basic black and white print styles -->
+	<link rel="stylesheet" media="print" href="core/print.css">
+
+    <link rel="stylesheet" href="local.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="imakewebthings-deck.js-1.0.0/modernizr.custom.js"></script>
+</head>
+<body>
+<div class="deck-container">
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+
+<section class="slide">
+  <h1>Statistical Tools for Performance Monitoring</h1>
+  <div class="footer">&copy; 2013 Anton Lebedevich</div>
+</section>
+
+<section class="slide">
+  <h2>A Lot of Graphs</h2>
+  <img class="graph" src="graph/great-wall.png"/>
+</section>
+
+<section class="slide">
+  <h2>Resolution</h2>
+  <li>&gt;=5min</li>
+  <li>1min</li>
+  <li>10s</li>
+  <li>&lt;=1s</li>
+</section>
+
+<section class="slide">
+  <h2>Tools</h2>
+  <ul>
+    <li>collectd</li>
+    <li>statsd</li>
+    <li>graphite</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Kale Stack</h2>
+  <ul>
+    <li><a href="https://github.com/etsy/skyline">github.com/etsy/skyline</a></li>
+    <li><a href="https://github.com/etsy/oculus">github.com/etsy/oculus</a></li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Skyline</h2>
+  <img src="img/skyline_screenshot.png"/>
+  <div class="fine-print">image from <a href="https://github.com/etsy/skyline">github.com/etsy/skyline</a></div>
+</section>
+
+<section class="slide">
+  <h2>Skyline Internals</h2>
+  <ul>
+    <li>Horizon agent</li>
+    <li>Redis</li>
+    <li>Analyzer agent</li>
+    <li>Flask (Python) Web App</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Skyline Algorithms</h2>
+  <ul>
+    <li>median absolute deviation</li>
+    <li>grubbs</li>
+    <li>first hour average</li>
+    <li>stddev from average</li>
+    <li>stddev from moving average</li>
+    <li>mean subtraction cumulation</li>
+    <li>least squares</li>
+    <li>histogram bins</li>
+    <li>ks test</li>
+    <li>second order anomalies</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Test Subject</h2>
+  <img class="graph" src="graph/bimodal-spike.png"/>
+</section>
+
+<section class="slide">
+  <h2>Test Subject</h2>
+  <img class="graph" src="graph/bimodal-spike-zoom.png"/>
+</section>
+
+<section class="slide">
+  <h2>Test Subject</h2>
+  <img class="graph" src="graph/bimodal-spike-histogram.png"/>
+</section>
+
+<section class="slide">
+  <h2>EWMA</h2>
+  <p>exponentially-weighted moving average</p>
+  <img class="graph" src="graph/ewma-spike.png"/>
+</section>
+
+<section class="slide">
+  <h2>Distribution Change</h2>
+  <img class="graph" src="graph/ks-subject.png"/>
+</section>
+
+<section class="slide">
+  <h2>Distribution Change</h2>
+  <img class="graph" src="graph/ks-with-change.png"/>
+</section>
+
+<section class="slide">
+  <h2>Oculus</h2>
+  <img src="img/oculus_results_screenshot.jpeg"/>
+  <div class="fine-print">image from <a href="https://github.com/etsy/oculus">github.com/etsy/oculus</a></div>
+</section>
+
+<section class="slide">
+  <h2>Oculus Internals</h2>
+  <ul>
+    <li>Skyline Import Script and Cronjob</li>
+    <li>Resque workers</li>
+    <li>ElasticSearch</li>
+    <li>Sinatra (Ruby) Web App</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Finding Similar Graphs</h2>
+  <ul>
+    <li>correlation (Pearson, Spearman)</li>
+    <li>Euclidean distance</li>
+    <li>dynamic time warping (DTW)</li>
+    <li>discrete Fourier transform (DFT)</li>
+    <li>discrete wavelet transform (DWT)</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Cluster Centers</h2>
+  <img class="graph" src="graph/medoids.png"/>
+</section>
+
+<section class="slide">
+  <h2>Cluster Members</h2>
+  <img class="graph" src="graph/cluster17.png"/>
+</section>
+
+<section class="slide">
+  <h2>Two Weeks</h2>
+  <img class="graph" src="graph/two-weeks.png"/>
+</section>
+
+<section class="slide">
+  <h2>Holt-Winters</h2>
+  <p>triple exponential smoothing</p>
+  <ul>
+    <li class="list-bad">needs a lot of data</li>
+    <li class="list-bad">sensitive to outliers</li>
+    <li class="list-bad">can't handle 3 seasons + holidays</li>
+    <li class="list-bad">overfitting</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>Time Shifting</h2>
+  <img class="graph" src="graph/two-weeks-shifted.png"/>
+</section>
+
+<section class="slide">
+    <h2>Q&amp;A</h2>
+    <p>Anton Lebedevich</p>
+    <p>mabrek@gmail.com</p>
+    <p><a target="_blank" href="https://twitter.com/widdoc">twitter.com/widdoc</a>
+    <p><a target="_blank" href="https://github.com/mabrek">github.com/mabrek</a></p>
+</section>
+
+<!-- End slides. -->
+
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- End extension snippets. -->
+
+</div>
+
+<!-- Required JS files. -->
+<script src="imakewebthings-deck.js-1.0.0/jquery.min.js"></script>
+<script src="imakewebthings-deck.js-1.0.0/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="imakewebthings-deck.js-1.0.0/core/deck.core.js"></script>
+<script src="imakewebthings-deck.js-1.0.0/extensions/hash/deck.hash.js"></script>
+<script src="imakewebthings-deck.js-1.0.0/extensions/menu/deck.menu.js"></script>
+<script src="imakewebthings-deck.js-1.0.0/extensions/goto/deck.goto.js"></script>
+<script src="imakewebthings-deck.js-1.0.0/extensions/status/deck.status.js"></script>
+<script src="imakewebthings-deck.js-1.0.0/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
